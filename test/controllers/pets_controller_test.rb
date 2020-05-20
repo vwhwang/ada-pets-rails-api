@@ -9,4 +9,22 @@ describe PetsController do
     must_respond_with :ok
   end
 
+  it "responds with an array of pet hashes" do
+    # Act
+    get pets_path
+
+    # Get the body of the response
+    body = JSON.parse(response.body)
+
+    # Assert
+    expect(body).must_be_instance_of Array
+    body.each do |pet|
+      expect(pet).must_be_instance_of Hash
+
+      required_pet_attrs = ["id", "name", "species", "age", "owner"]
+
+      expect(pet.keys.sort).must_equal required_pet_attrs.sort
+    end
+  end
+
 end

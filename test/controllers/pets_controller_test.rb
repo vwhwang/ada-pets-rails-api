@@ -27,4 +27,17 @@ describe PetsController do
     end
   end
 
+  it "will respond with an empty array when there are no pets" do
+    # Arrange
+    Pet.destroy_all
+
+    # Act
+    get pets_path
+    body = JSON.parse(response.body)
+
+    # Assert
+    expect(body).must_be_instance_of Array
+    expect(body).must_equal []
+  end
+
 end

@@ -1,7 +1,12 @@
 require "test_helper"
 
 describe PetsController do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+
+  it "responds with JSON and success" do
+    get pets_path
+
+    expect(response.header['Content-Type']).must_include 'json'
+    must_respond_with :ok
+  end
+
 end

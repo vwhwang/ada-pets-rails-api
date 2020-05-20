@@ -1,0 +1,5 @@
+valid_pet:
+  name: Alligator
+  species: Dog
+  age: 10
+  owner: Sarah

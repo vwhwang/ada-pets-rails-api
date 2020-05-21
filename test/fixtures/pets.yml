@@ -1,0 +1,10 @@
+stinker:
+  name: Stinker
+  age: 14
+  owner: Chris
+  species: Dog
+samson:
+  name: Samson
+  age: 7
+  owner: Dee
+  species: Cat

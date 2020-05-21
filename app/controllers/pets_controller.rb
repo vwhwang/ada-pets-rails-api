@@ -12,7 +12,11 @@ class PetsController < ApplicationController
       render json: pet.as_json(only: [:id]), status: :created
       return
     else
-      # Do something else
+      render json: {
+          ok: false,
+          errors: pet.errors.messages
+        }, status: :bad_request
+      return
     end
   end
 

@@ -5,4 +5,7 @@ class PetsController < ApplicationController
     render json: pets, status: :ok
   end
 
+  def create
+  end
+
 end

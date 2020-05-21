@@ -42,4 +42,26 @@ describe PetsController do
     end
   end
 
+  describe "create" do
+    let(:valid_new_pet_data) {
+      {
+        pet: {
+          name: "Stinker",
+          species: "Dog",
+          age: 13,
+          owner: "Grace"
+        }
+      }
+    }
+
+    it "can create a new pet" do
+      expect {
+        post pets_path, params: valid_new_pet_data
+      }.must_differ "Pet.count", 1
+
+      must_respond_with :created
+    end
+
+  end
+
 end

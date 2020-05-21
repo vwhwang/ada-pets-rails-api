@@ -20,6 +20,20 @@ class PetsController < ApplicationController
     end
   end
 
+  def show
+    pet = Pet.find_by(id: params[:id])
+
+    if pet
+      render json: pet.as_json(only: [:id, :name, :age, :owner, :species])
+      return
+    else
+      render json: { ok: false, errors: ["Not Found"] }, status: :not_found
+      return
+    end
+  end
+
+  private
+
   def pet_params
     return params.require(:pet).permit(:name, :age, :owner, :species)
   end

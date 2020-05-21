@@ -87,4 +87,28 @@ describe PetsController do
 
   end
 
+  describe "show" do
+    it "responds with JSON, success, and pet data when looking for one existing pet" do
+      existing_pet = Pet.first
+
+      get pet_path(existing_pet.id)
+
+      body = check_response(expected_type: Hash)
+      expect(body.keys.sort).must_equal REQUIRED_PET_FIELDS
+      expect(body["id"]).must_equal existing_pet.id
+      expect(body["name"]).must_equal existing_pet.name
+      expect(body["species"]).must_equal existing_pet.species
+      expect(body["age"]).must_equal existing_pet.age
+      expect(body["owner"]).must_equal existing_pet.owner
+    end
+
+    it "responds with JSON, not found, and errors when looking for non-extant pet" do
+      get pet_path(-1)
+
+      body = check_response(expected_type: Hash, expected_status: :not_found)
+      expect(body["ok"]).must_equal false
+      expect(body["errors"]).must_include "Not Found"
+    end
+  end
+
 end

@@ -10,4 +10,9 @@ describe PetsController do
     must_respond_with :ok
   end
 
+  it "will return proper fields for a list of pets" do 
+    pet_fields = ["id","name","age","owner","species"].sort 
+  
+  end 
+
 end
